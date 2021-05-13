@@ -1,23 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import WaitingRoom from './WaitingRoom';
+import Home from './Home';
+import GameList from './GameList';
+import { socket, SocketContext } from './sockets';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SocketContext.Provider value={socket}>
+        <Router>
+          <Route exact path="/" component={Home} />
+          <Route path="/waiting/:room_id" component={WaitingRoom} />
+          <Route path="/gamelist" component={GameList} />
+        </Router>
+      </SocketContext.Provider>
     </div>
   );
 }
