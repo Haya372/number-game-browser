@@ -20,7 +20,6 @@ class Home extends React.Component {
   }
 
   render() {
-      console.log(this.context);
     return (
       <div className="home">
         <h1>Number Game</h1>
